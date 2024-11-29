@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ProjectCuoiKy</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="content_introduce">Chào mừng bạn đến ứng dụng To do list. Đây là một ứng dụng quản lý kế hoạch hàng ngày, mong bạn có trải nghiệm thú vị</string>
+    <string name="todo">TODO</string>
+</resources>

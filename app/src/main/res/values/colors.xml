@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="Bocchi">#EEB8C4</color>
+    <color name="Nijika_Ijichi">#E6D47B</color>
+    <color name="Ikuyo_Kita">#D0574E</color>
+    <color name="Ryo_Yamada">#4061A0</color>
+    <color name="colorButtonPressed">#FF0000</color> <!-- Example pressed color -->
+    <color name="colorButtonFocused">#00FF00</color> <!-- Example focused color -->
+    <color name="colorButtonDefault">#0000FF</color>
+    <color name="blueBocchi">#66B3CC</color>
+    <color name="YellowBocchi">#F4E47B</color>
+</resources>
