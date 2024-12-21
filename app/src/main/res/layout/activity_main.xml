@@ -50,13 +50,12 @@
             app:layout_anchorGravity="center"
             app:menu="@menu/bottom_navigation" />
 
-        <!-- CardView containing ImageButton -->
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView3"
-        android:name="com.example.projectcuoiky.Home"
+        android:name="com.example.projectcuoiky.Fragments.Home"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/layoutBottom"

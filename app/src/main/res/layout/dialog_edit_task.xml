@@ -24,32 +24,38 @@
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/updateTitle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="85dp"
             android:layout_marginVertical="5dp"
             android:background="@drawable/button_color"
             android:drawableLeft="@drawable/baseline_title_24"
-            android:drawableTint="@color/Bocchi"
             android:drawablePadding="10dp"
+            android:drawableTint="@color/Bocchi"
             android:hint="TItle task"
             android:padding="20dp"
+            android:scrollbars="vertical"
+            android:textColor="@color/Bocchi"
             android:textColorHint="@color/Bocchi"
             android:textSize="21sp"
-            android:textStyle="italic" />
+            android:textStyle="bold|italic" />
 
         <EditText
+            android:id="@+id/updateDecription"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="146dp"
             android:layout_marginVertical="5dp"
             android:background="@drawable/button_color"
-            android:drawableLeft="@drawable/baseline_subject_24"
-            android:drawableTint="@color/Bocchi"
             android:drawablePadding="10dp"
+            android:drawableTint="@color/Bocchi"
+            android:gravity="top"
             android:hint="Decription"
             android:padding="20dp"
+            android:scrollbars="vertical"
+            android:textColor="@color/Bocchi"
             android:textColorHint="@color/Bocchi"
             android:textSize="21sp"
-            android:textStyle="italic" />
+            android:textStyle="bold|italic" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,18 +63,20 @@
             android:orientation="horizontal">
 
             <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/updateDate"
+                android:layout_width="282dp"
+                android:layout_height="85dp"
                 android:layout_marginVertical="5dp"
                 android:background="@drawable/button_color"
                 android:drawableLeft="@drawable/baseline_date_range_24"
-                android:drawablePadding="10dp"
+                android:drawablePadding="20dp"
                 android:drawableTint="@color/Bocchi"
-                android:hint=" dd-mm-yyyy hh:mm:ss"
+                android:hint=" dd-mm-yyyy"
                 android:padding="20dp"
+                android:textColor="@color/Bocchi"
                 android:textColorHint="@color/Bocchi"
                 android:textSize="21sp"
-                android:textStyle="italic" />
+                android:textStyle="bold|italic" />
 
 
             <androidx.cardview.widget.CardView
@@ -78,6 +86,7 @@
                 app:cardCornerRadius="15dp">
 
                 <ImageView
+                    android:id="@+id/dateUpdateButotn"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/button_ripple_home"
@@ -87,6 +96,49 @@
                     android:focusable="true"
                     android:padding="10dp"
                     android:src="@drawable/baseline_date_range_24"
+                    app:tint="@color/white" />
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/timeUpdate"
+                android:layout_width="282dp"
+                android:layout_height="85dp"
+                android:layout_marginVertical="5dp"
+                android:background="@drawable/button_color"
+                android:drawableLeft="@drawable/baseline_access_time_24"
+                android:drawablePadding="20dp"
+                android:drawableTint="@color/Bocchi"
+                android:hint="hh:mm:ss"
+                android:padding="20dp"
+                android:textColor="@color/Bocchi"
+                android:textColorHint="@color/Bocchi"
+                android:textSize="21sp"
+                android:textStyle="bold|italic" />
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="right|center_vertical"
+                android:layout_margin="6dp"
+                app:cardCornerRadius="15dp">
+
+                <ImageView
+                    android:id="@+id/TimeButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/button_ripple_home"
+                    android:backgroundTint="@color/blueBocchi"
+                    android:backgroundTintMode="add"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="10dp"
+                    android:src="@drawable/baseline_access_time_24"
                     app:tint="@color/white" />
             </androidx.cardview.widget.CardView>
         </LinearLayout>
@@ -100,7 +152,7 @@
 
 
             <Button
-                android:id="@+id/btnOkEdit"
+                android:id="@+id/btnUpdate"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"

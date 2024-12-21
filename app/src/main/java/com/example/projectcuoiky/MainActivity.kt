@@ -8,12 +8,20 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.example.projectcuoiky.Fragments.Setting
 import com.example.projectcuoiky.databinding.ActivityMainBinding
+import com.example.projectcuoiky.Fragments.Manager
+import com.example.projectcuoiky.Fragments.Home
+import com.example.projectcuoiky.Model.WeatherForecast
+import com.example.projectcuoiky.ViewModel.DateViewModel
+import com.example.projectcuoiky.ViewModel.TaskViewModel
+import com.example.projectcuoiky.utils.CalendarUtils
+import com.example.projectcuoiky.utils.dialog_CRUD
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.time.LocalDate
 
@@ -21,7 +29,8 @@ import java.time.LocalDate
 class MainActivity : AppCompatActivity()
 {
     private lateinit var binding: ActivityMainBinding
-
+    private lateinit var dateLive: DateViewModel
+    val taskViewModel:TaskViewModel = TaskViewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -29,13 +38,15 @@ class MainActivity : AppCompatActivity()
         //Hien thi bottom navigation
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.history -> replaceFragment(History())
+                R.id.history -> replaceFragment(Manager())
                 R.id.setting -> replaceFragment(Setting())
                 R.id.profile -> replaceFragment(WeatherForecast())
                 else->replaceFragment(Home())
             }
             true
         }
+
+        dateLive =  ViewModelProvider(this).get(DateViewModel::class.java)
 
 
 
@@ -47,10 +58,8 @@ class MainActivity : AppCompatActivity()
         //xu ly butotn add ch bottomNavigation
         val button_add_task = findViewById<FloatingActionButton>(R.id.floatingButtonAdd)
         button_add_task.setOnClickListener{
-           dialog_CRUD.dialogAddTask(this)
+           dialog_CRUD.dialogAddTask(this,taskViewModel)
         }
-
-        //Xu ly button_back tren toolbar
 
 
         val selectDateButton:ImageView =findViewById(R.id.selectDateButton)
@@ -64,7 +73,7 @@ class MainActivity : AppCompatActivity()
                 this,
                 { view, selectedYear, selectedMonth, selectedDay ->
                     val selectedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
-                    Toast.makeText(this, "Selected Date: $selectedDate", Toast.LENGTH_SHORT).show()
+                    dateLive.setSelectedDate(CalendarUtils.FormatterStringToLocaleDate(selectedDate))
                 },
                 year, month, day
             )
@@ -79,6 +88,7 @@ class MainActivity : AppCompatActivity()
         yearDay.text = today.year.toString()
 
     }
+
 
     fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().apply {
@@ -132,4 +142,11 @@ class MainActivity : AppCompatActivity()
     }
 
 
+    fun setDate(Date:LocalDate){
+        val textDay = findViewById<TextView>(R.id.Day_View)
+        val yearDay = findViewById<TextView>(R.id.Year_View)
+
+        textDay.text = Date.month.name
+        yearDay.text = Date.year.toString()
+    }
 }

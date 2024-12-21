@@ -6,22 +6,22 @@
     app:startDestination="@id/home">
     <fragment
         android:id="@+id/history2"
-        android:name="com.example.projectcuoiky.History"
+        android:name="com.example.projectcuoiky.Fragments.Manager"
         android:label="fragment_history"
         tools:layout="@layout/fragment_history" />
     <fragment
         android:id="@+id/home"
-        android:name="com.example.projectcuoiky.Home"
+        android:name="com.example.projectcuoiky.Fragments.Home"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/profile"
-        android:name="com.example.projectcuoiky.WeatherForecast"
+        android:name="com.example.projectcuoiky.Model.WeatherForecast"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/setting"
-        android:name="com.example.projectcuoiky.Setting"
+        android:name="com.example.projectcuoiky.Fragments.Setting"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" />
 </navigation>

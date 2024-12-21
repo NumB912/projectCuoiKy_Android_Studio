@@ -1,30 +1,26 @@
-package com.example.projectcuoiky
+package com.example.projectcuoiky.Model
 
 import ForecastResponse
 import WeatherApi
-import WeatherResponse
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.projectcuoiky.ForecastWeatherDaysAdapter
+import com.example.projectcuoiky.MainActivity
+import com.example.projectcuoiky.R
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -53,7 +49,6 @@ class WeatherForecast : Fragment() {
         val buttonSearch = view.findViewById<ImageView>(R.id.searchView)
         buttonSearch.setOnClickListener {
             val textSearchWeather = view.findViewById<EditText>(R.id.searchEdit)
-            //getWeather(view,textSearchWeather.text.toString())
             getWeatherDays(view,textSearchWeather.text.toString(),8)
         }
        // getWeather(view)
@@ -61,50 +56,7 @@ class WeatherForecast : Fragment() {
         return view
     }
 
-    /*private fun getWeather( view: View,city: String="HaNoi") {
-        val call = weatherApi.getCurrentWeather(apiKey, city)
-        call.enqueue(object : Callback<WeatherResponse> {
-            override fun onResponse(call: Call<WeatherResponse>, response: Response<WeatherResponse>) {
-
-
-                if (response.isSuccessful) {
-                    val weather = response.body()
-                    if (weather != null) {
-                        val temp = weather.current.temp_c
-                        val condition = weather.current.condition.text
-                        val cityName = weather.location.name
-                        val humidty = weather.current.humidity
-                        val wind = weather.current.wind_kph
-
-                       val img= view.findViewById<ImageView>(R.id.imgWeather)
-                        Glide.with(view)
-                            .load("https:"+weather.current.condition.icon)
-                            .placeholder(R.drawable.weather_sunday) // Optional placeholder
-                            .into(img);
-                        val temperature_value = view.findViewById<TextView>(R.id.value_Temperture)
-                        val temperture = view.findViewById<TextView>(R.id.Temperture)
-                        val position = view.findViewById<TextView>(R.id.Position)
-                        val wind_value =view.findViewById<TextView>(R.id.value_wind)
-                        val humidty_value = view.findViewById<TextView>(R.id.value_Humidty)
-                        position.text = cityName
-                        wind_value.text = wind.toString()+"km/h"
-                        humidty_value.text = humidty.toString()+"%"
-                        temperature_value.text = condition
-                        temperture.text = "${temp}°C"
-
-
-                    }
-                } else {
-                    view.findViewById<TextView>(R.id.Humidty).text = "Error"
-                }
-                    }
-
-            override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {
-                Toast.makeText(requireContext(), "Failed to get data", Toast.LENGTH_SHORT).show()
-            }
-        })
-    }*/
-    private fun getWeatherDays( view: View,city: String="HaNoi",days:Int=1) {
+    private fun getWeatherDays(view: View, city: String="HaNoi", days:Int=8) {
         val call = weatherApi.getFutureWeather(apiKey, city,days)
         call.enqueue(object : Callback<ForecastResponse> {
             override fun onResponse(
@@ -117,13 +69,14 @@ class WeatherForecast : Fragment() {
                         val weatherCurrent = response_forcastDays.current
                         val temp = weatherCurrent.temp_c
                         val condition = weatherCurrent.condition.text
-                        val cityName = weatherCurrent.condition.
+                        val cityName = response_forcastDays.location.country
                         val humidty = weatherCurrent.humidity
                         val wind = weatherCurrent.wind_kph
+                        val provide = response_forcastDays.location.name
 
                         val img= view.findViewById<ImageView>(R.id.imgWeather)
                         Glide.with(view)
-                            .load("https:"+weather.current.condition.icon)
+                            .load("https:"+weatherCurrent.condition.icon)
                             .placeholder(R.drawable.weather_sunday) // Optional placeholder
                             .into(img);
                         val temperature_value = view.findViewById<TextView>(R.id.value_Temperture)
@@ -131,14 +84,23 @@ class WeatherForecast : Fragment() {
                         val position = view.findViewById<TextView>(R.id.Position)
                         val wind_value =view.findViewById<TextView>(R.id.value_wind)
                         val humidty_value = view.findViewById<TextView>(R.id.value_Humidty)
+                        val provideText = view.findViewById<TextView>(R.id.provideTextView)
+
                         position.text = cityName
                         wind_value.text = wind.toString()+"km/h"
                         humidty_value.text = humidty.toString()+"%"
                         temperature_value.text = condition
                         temperture.text = "${temp}°C"
-                        for(item in weatherDays){
-                            Log.i("item_Weather","${item.date}")
-                        }
+                        provideText.text = provide
+
+
+                        val weatherDays = response_forcastDays.forecast.forecastday
+                        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView_weather)
+                        recyclerView.layoutManager =
+                            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                        val adapter = ForecastWeatherDaysAdapter(weatherDays, requireContext())
+                        recyclerView.adapter = adapter
+
                     }
                 }
             }

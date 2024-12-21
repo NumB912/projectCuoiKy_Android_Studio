@@ -1,4 +1,4 @@
-package com.example.projectcuoiky
+package com.example.projectcuoiky.Model
 
 import java.time.LocalDate
 

@@ -6,7 +6,7 @@
         android:icon="@drawable/baseline_home_24"
         android:id="@+id/home"/>
     <item android:title="History"
-        android:icon="@drawable/baseline_history_toggle_off_24"
+        android:icon="@drawable/baseline_analytics_24"
         android:id="@+id/history"/>
     <item android:title=""
         android:id="@+id/Add"

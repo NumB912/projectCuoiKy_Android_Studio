@@ -40,7 +40,7 @@
 
 
                 <TextView
-                    android:id="@+id/dayTextView2"
+                    android:id="@+id/hourTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -50,7 +50,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/day2"
+                    android:id="@+id/minutesText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -74,6 +74,8 @@
                     android:id="@+id/title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:padding="5dp"
                     android:text="Title"
                     android:textColor="@color/white"
@@ -81,9 +83,11 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/decription"
+                    android:id="@+id/DecriptionAdd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:padding="5dp"
                     android:text="This is a simple CardView example."
                     android:textColor="@color/white"

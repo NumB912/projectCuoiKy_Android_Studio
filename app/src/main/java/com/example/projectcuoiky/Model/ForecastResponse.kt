@@ -20,9 +20,6 @@ data class Current(
     val wind_kph: Double
 )
 
-
-
-
 data class Forecast(
     val forecastday: List<ForecastDay>
 )
